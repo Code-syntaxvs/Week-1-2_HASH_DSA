@@ -2,7 +2,7 @@ import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicInteger;
 
-public class Main {
+public class UsernameService {
 
     // username -> userId mapping (O(1) lookup)
     private final ConcurrentHashMap<String, String> usernameToUserId;
@@ -10,7 +10,7 @@ public class Main {
     // username -> attempt frequency
     private final ConcurrentHashMap<String, AtomicInteger> attemptFrequency;
 
-    public Main() {
+    public UsernameService() {
         usernameToUserId = new ConcurrentHashMap<>();
         attemptFrequency = new ConcurrentHashMap<>();
     }
@@ -76,7 +76,7 @@ public class Main {
 
     // For testing
     public static void main(String[] args) {
-        Main service = new Main();
+        UsernameService service = new UsernameService();
 
         service.registerUsername("john_doe", "U1001");
         service.registerUsername("admin", "U0001");
@@ -99,4 +99,3 @@ public class Main {
                 + service.getMostAttempted());
     }
 }
-
